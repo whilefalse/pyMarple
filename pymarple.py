@@ -8,6 +8,5 @@ def find(postcode):
     if resource.info()['Content-Type'] != "text/csv":
         raise Exception()
 
-    p, lat, long = resource.read().split(',')
-    return float(lat), float(long)
+    return [float(x) for x in resource.read().split(',')[1:]]
     
