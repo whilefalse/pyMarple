@@ -6,7 +6,7 @@ class PostcodeNotFound(Exception):
     pass
 
 def find(postcode):
-    resource = "%s?%s" % (url, urllib.urlencode([('p',postcode), ('f','csv')]))
+    resource = "%s?%s" % (url, urllib.urlencode({'p':postcode,'f':'csv'}))
     
     try:
         resource = urllib.urlopen(resource)
