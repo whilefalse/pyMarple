@@ -7,17 +7,16 @@ class TestErnestMarple(unittest.TestCase):
 
     def test_birmingham(self):
         lat, long = pymarple.find('b27 6eg')
-        self.assertEqual(lat, 52.450211)
-        self.assertEqual(long, -1.816588)
+        self.assertAlmostEqual(lat, 52.450211,4)
+        self.assertAlmostEqual(long, -1.816588,4)
 
     def test_london(self):
         lat, long = pymarple.find('e3 2bg')
-        self.assertEqual(lat, 51.526966)
-        self.assertEqual(long, -0.029495)
+        self.assertAlmostEqual(lat, 51.526966,4)
+        self.assertAlmostEqual(long, -0.029495,4)
 
     def test_invalid(self):
-        lat, long = pymarple.find('not a postcode fool')
-        self.assertRaises(Exception)
+        self.assertRaises(Exception, pymarple.find, 'not a postcode')
 
 
 if __name__ == "__main__":
