@@ -16,8 +16,11 @@ class TestErnestMarple(unittest.TestCase):
         self.assertAlmostEqual(long, -0.029495,4)
 
     def test_invalid(self):
-        self.assertRaises(Exception, pymarple.find, 'not a postcode')
+        self.assertRaises(pymarple.PostcodeNotFound, pymarple.find, 'not a postcode')
 
+    def test_url_unreachable(self):
+        pymarple.url = "http://meh/"
+        self.assertRaises(pymarple.PostcodeNotFound, pymarple.find, 'b27 6eg')
 
 if __name__ == "__main__":
     unittest.main()

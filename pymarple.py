@@ -2,11 +2,19 @@ import urllib
 
 url = "http://ernestmarples.com/"
 
+class PostcodeNotFound(Exception):
+    pass
+
 def find(postcode):
     resource = "%s?%s" % (url, urllib.urlencode([('p',postcode), ('f','csv')]))
-    resource = urllib.urlopen(resource)
+    
+    try:
+        resource = urllib.urlopen(resource)
+    except IOError:
+        raise PostcodeNotFound()    
+
     if resource.info()['Content-Type'] != "text/csv":
-        raise Exception()
+        raise PostcodeNotFound()
 
     return [float(x) for x in resource.read().split(',')[1:]]
     
