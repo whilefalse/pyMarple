@@ -6,14 +6,14 @@ class TestErnestMarple(unittest.TestCase):
         pass
 
     def test_birmingham(self):
-        lat, long = pymarple.find('b27 6eg')
+        lat, lng = pymarple.find('b27 6eg')
         self.assertAlmostEqual(lat, 52.450211,4)
-        self.assertAlmostEqual(long, -1.816588,4)
+        self.assertAlmostEqual(lng, -1.816588,4)
 
     def test_london(self):
-        lat, long = pymarple.find('e3 2bg')
+        lat, lng = pymarple.find('e3 2bg')
         self.assertAlmostEqual(lat, 51.526966,4)
-        self.assertAlmostEqual(long, -0.029495,4)
+        self.assertAlmostEqual(lng, -0.029495,4)
 
     def test_invalid_postcode(self):
         self.assertRaises(pymarple.PostcodeNotFound, pymarple.find, 'not a postcode')
